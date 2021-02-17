@@ -16,11 +16,7 @@ var ansDiv = document.querySelector("#answer-div");
 var ans = document.querySelector("#answer");
 
 // Stats object
-var stats = {
-    correct: 0,
-    wrong: 0,
-    unanswered: 0
-}
+var stats = 0;
 
 // Timer
 var timer = 10;
@@ -140,12 +136,12 @@ function checkAns(guess) {
     if (guess === qt.correctAns) {
         ansDiv.style.display = "block";
         ans.textContent = "Correct!";
-        stats.correct++;
+        stats += 5;
         getQuestion();
     } else {
         ansDiv.style.display = "block";
         ans.textContent = "Wrong!";
-        stats.wrong++;
+        stats -= 5;
         getQuestion();
     }
 }
@@ -153,15 +149,8 @@ function checkAns(guess) {
 // Displays the number of correct and wrong to the user
 // And make sure none of the other html elements are being displayed
 function showStats() {
-    stats.unanswered = questions.length;
     body.style.display = "none";
     ansDiv.style.display = "none";
     statsEl.style.display = "flex";
-    correctEl.textContent = "Correct: " + stats.correct;
-    wrongEl.textContent = "Wrong: " + stats.wrong;
-    if (questions.length === 0) {
-        unansweredEl.textContent = "Unanswered: " + (stats.unanswered);
-    } else {
-        unansweredEl.textContent = "Unanswered: " + (stats.unanswered + 1);
-    }
+    correctEl.textContent = "Score: " + stats;    
 }

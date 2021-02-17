@@ -67,8 +67,21 @@ section button {
 }
 
 #stats span {
-    margin: 10px;
-    font-size: 15px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+#stats input {
+    margin-bottom: 15px;
+}
+
+#stats button {
+    margin-top: 10px;
+    padding: 10px;
+    border: 2px purple solid;
+    border-radius: 10px;
+    font-weight: bolder;
 }
 
 div {
