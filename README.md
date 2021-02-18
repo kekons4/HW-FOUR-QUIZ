@@ -9,19 +9,19 @@ to be put into the highscores.
 
 ## Screenshots
 
-![screenshot_one](/assets/screenshots/screenshot_one.png)
+![screenshot_one](/Assets/screenshots/screenshot_one.png)
 
 ##### screenshot of the homepage.
 
-![screenshot_two](/assets/screenshots/screenshot_two.png)
+![screenshot_two](/Assets/screenshots/screenshot_two.png)
 
 ##### screenshot of question with timer above.
 
-![screenshot_three](/assets/screenshots/screenshot_three.png)
+![screenshot_three](/Assets/screenshots/screenshot_three.png)
 
 ##### screenshot of results page, where player can enter initials.
 
-![screenshot_four](/assets/screenshots/screenshot_four.png)
+![screenshot_four](/Assets/screenshots/screenshot_four.png)
 
 ##### screenshot of highscore page which displays all highscores of previous players.
 
