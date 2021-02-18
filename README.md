@@ -1,4 +1,4 @@
-# HW-FOUR-QUIZ
+# Coding Quiz
 
 Homework four of the OSU coding bootcamp.
 
