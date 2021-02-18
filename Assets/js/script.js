@@ -14,9 +14,16 @@ var wrongEl = document.querySelector("#wrong");
 var unansweredEl = document.querySelector("#unanswered");
 var ansDiv = document.querySelector("#answer-div");
 var ans = document.querySelector("#answer");
+var initials = document.querySelector("#initials");
+var initialsInput = document.querySelector("#init-input");
+var highscoresEl = document.querySelector("#highscores");
+var highscoresBox = document.querySelector("#scores");
+var goBack = document.querySelector("#goBack");
+var clearHighscores = document.querySelector("#clearHighscores");
 
-// Stats object
+// Stats and highscore
 var stats = 0;
+var highscores = [];
 
 // Timer
 var timer = 10;
@@ -70,6 +77,7 @@ var questions = [q1, q2, q3, q4];
 // Chosen answer
 var qt = "";
 
+// Starts the quiz
 startBtn.addEventListener("click", function () {
     startBtn.style.display = "none";
     timerEl.style.display = "inline";
@@ -79,6 +87,7 @@ startBtn.addEventListener("click", function () {
     // getQuestion();
 });
 
+// Start the timer and display first question to the user.
 function started() {
     getQuestion();
     timed = setInterval(function () {
@@ -92,15 +101,15 @@ function started() {
         1000);
 }
 
+// Display question to the user.
 function getQuestion() {
     ansDiv.style.display = "none";
-    count++;
-    qt = questions.pop();
+    qt = questions[count];
     if (timer !== 0 && qt === undefined) {
         clearInterval(timed);
         showStats()
     } else {
-        questionTitle.textContent = "Question " + (count);
+        questionTitle.textContent = "Question " + (count + 1);
         question.textContent = qt.q;
         ansOne.textContent = qt.a1;
         ansTwo.textContent = qt.a2;
@@ -111,6 +120,7 @@ function getQuestion() {
         ansThree.setAttribute("data-value", qt.a3);
         ansFour.setAttribute("data-value", qt.a4);
     }
+    count++;
 }
 
 // All Answer Buttons click events
@@ -141,16 +151,64 @@ function checkAns(guess) {
     } else {
         ansDiv.style.display = "block";
         ans.textContent = "Wrong!";
-        stats -= 5;
+        stats -= 2;
+        // If the user gets an question wrong 1 second is deducted
+        timer--;
         getQuestion();
     }
 }
 
-// Displays the number of correct and wrong to the user
+// Displays the users final score.
 // And make sure none of the other html elements are being displayed
 function showStats() {
     body.style.display = "none";
     ansDiv.style.display = "none";
     statsEl.style.display = "flex";
-    correctEl.textContent = "Score: " + stats;    
+    correctEl.textContent = "Score: " + stats;
 }
+
+// When After the user submits their initials then it will store into highscore array.
+initials.addEventListener("submit", function (event) {
+    event.preventDefault();
+    if (initialsInput.value !== "" && initialsInput.value !== undefined) {
+        highscores.push(initialsInput.value + " " + stats);
+        showHighscores();
+    } else {
+        alert("You must enter at least one character to enter.");
+    }
+});
+
+// Show all highscores to the user
+function showHighscores() {
+    statsEl.style.display = "none";
+    highscoresEl.style.display = "flex";
+    for (let i = 0; i < highscores.length; i++) {
+        let entry = document.createElement("span");
+        entry.textContent = (i + 1) + ". " + highscores[i];
+        highscoresBox.appendChild(entry);
+    }
+}
+
+// Reset all counts, timers, stats and sends the user back to the start screen
+goBack.addEventListener("click", function () {
+    highscoresEl.style.display = "none";
+    startBtn.style.display = "inline";
+    timerEl.style.display = "none";
+    count = 0;
+    stats = 0;
+    timer = 10;
+    // Remove all children in the highscore box
+    while (highscoresBox.firstChild) {
+        highscoresBox.removeChild(highscoresBox.firstChild);
+    }
+});
+
+// Handles the removal of all scores in the highscore box but doesnt remove from the
+// highscores array.
+clearHighscores.addEventListener("click", function () {
+    // Remove all children in the highscore box
+    while (highscoresBox.firstChild) {
+        highscoresBox.removeChild(highscoresBox.firstChild);
+    }
+    highscores = [];
+});
