@@ -103,7 +103,7 @@ function started() {
 
 // Display question to the user.
 function getQuestion() {
-    ansDiv.style.display = "none";
+    // ansDiv.style.display = "none";
     qt = questions[count];
     if (timer !== 0 && qt === undefined) {
         clearInterval(timed);
@@ -144,13 +144,19 @@ ansFour.addEventListener("click", function () {
 // Checks if the selected answer is correct
 function checkAns(guess) {
     if (guess === qt.correctAns) {
-        ansDiv.style.display = "block";
         ans.textContent = "Correct!";
+        setTimeout(function() {
+            ansDiv.style.display = "none";
+        }, 600);
+        ansDiv.style.display = "block";
         stats += 5;
         getQuestion();
     } else {
-        ansDiv.style.display = "block";
         ans.textContent = "Wrong!";
+        setTimeout(function() {
+            ansDiv.style.display = "none";
+        }, 600);
+        ansDiv.style.display = "block";
         stats -= 2;
         // If the user gets an question wrong 1 second is deducted
         timer--;
