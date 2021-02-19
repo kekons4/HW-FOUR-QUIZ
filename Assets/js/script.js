@@ -36,12 +36,12 @@ var count = 0;
 
 // Bellow are all the questions 
 var q1 = {
-    q: "What is 2+2",
-    a1: "1",
-    a2: "4",
-    a3: "5",
-    a4: "2",
-    correctAns: "4"
+    q: "What does .forEach() method do?",
+    a1: "Returns an array of numbers",
+    a2: "Calls a function once for each element in an array, in order.",
+    a3: "Console logs each element in the array",
+    a4: "This method does not exist",
+    correctAns: "calls a function once for each element in an array, in order."
 }
 
 var q2 = {
